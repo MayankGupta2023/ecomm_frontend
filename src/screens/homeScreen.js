@@ -7,7 +7,7 @@ import Message from "../components/Message";
 import ProductCarousel from "../components/ProductCarousel";
 import { fetchProductList } from "../redux/slices/productSlice";
 import Paginate from "../components/Paginate";
-import { useParams, useLocation } from "react-router-dom"; // useLocation hook for React Router v6
+import { useParams, useLocation } from "react-router-dom";
 
 function HomeScreen() {
     const dispatch = useDispatch();
@@ -15,7 +15,7 @@ function HomeScreen() {
     const topRatedProducts = useSelector((state) => state.product.topRatedProducts);
 
     const { products, loading, error, page, pages } = productList;
-    const { pageNumber } = useParams();
+    const { pageNumber = 1 } = useParams();  // Default to 1 if pageNumber is not available
     const { products: topProducts, loading: topLoading, error: topError } = topRatedProducts;
 
     // Use useLocation for handling query params with React Router v6
@@ -23,7 +23,7 @@ function HomeScreen() {
     const keyword = location.search;
 
     useEffect(() => {
-        dispatch(fetchProductList(keyword, pageNumber)); // insted of 1 write pageNumber but right now it is giving errpr
+        dispatch(fetchProductList(keyword, pageNumber)); // pageNumber will always be a valid number
     }, [dispatch, keyword, pageNumber]);
 
     return (
