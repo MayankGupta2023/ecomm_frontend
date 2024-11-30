@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom"; // Updated import
 import { Row, Col, ListGroup, Image, Card, Button } from "react-bootstrap";
-import { PayPalButton } from "react-paypal-button-v2";
+// import { PayPalButton } from "react-paypal-button-v2";
 import { useDispatch, useSelector } from "react-redux";
 
 import Message from "../components/Message";
@@ -181,10 +181,11 @@ function OrderScreen() {
                                     {!sdkReady ? (
                                         <Loader />
                                     ) : (
-                                        <PayPalButton
-                                            amount={orderDetails?.totalPrice}
-                                            onSuccess={successPaymentHandler}
-                                        />
+                                        // <PayPalButton
+                                        //     amount={orderDetails?.totalPrice}
+                                        //     onSuccess={successPaymentHandler}
+                                        // />
+                                        <Button>Nothing </Button>
                                     )}
                                 </ListGroup.Item>
                             )}
