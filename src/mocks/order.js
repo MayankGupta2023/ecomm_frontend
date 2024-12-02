@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "../axiosInstance";
 
 class OrderAPI {
     createOrder = async (order) => {
@@ -12,7 +12,7 @@ class OrderAPI {
                 },
             };
 
-            const { data } = await axios.post(`/api/orders/add/`, order, config);
+            const { data } = await axiosInstance.post(`/api/orders/add/`, order, config);
 
             return data;
         } catch (error) {
@@ -33,7 +33,7 @@ class OrderAPI {
                 },
             };
 
-            const { data } = await axios.get(`/api/orders/${id}/`, config);
+            const { data } = await axiosInstance.get(`/api/orders/${id}/`, config);
 
             return data;
         } catch (error) {
@@ -54,7 +54,7 @@ class OrderAPI {
                 },
             };
 
-            const { data } = await axios.put(
+            const { data } = await axiosInstance.put(
                 `/api/orders/${id}/pay/`,
                 paymentResult,
                 config
@@ -79,7 +79,7 @@ class OrderAPI {
                 },
             };
 
-            const { data } = await axios.get(`/api/orders/myorders/`, config);
+            const { data } = await axiosInstance.get(`/api/orders/myorders/`, config);
 
             return data;
         } catch (error) {
@@ -100,7 +100,7 @@ class OrderAPI {
                 },
             };
 
-            const { data } = await axios.put(
+            const { data } = await axiosInstance.put(
                 `/api/orders/${order._id}/deliver/`,
                 {},
                 config

@@ -1,33 +1,16 @@
-import axios from 'axios';
+import axiosInstance from '../axiosInstance';
 
 class ProductAPI {
-    // async getProductList(keyword = '', pageNumber = '') {
-    //     try {
-    //         const { data } = await axios.get(`/api/products${keyword}`, {
-    //             params: {
-
-    //                 page: pageNumber
-    //             }
-    //         });
-    //         return data;
-    //     } catch (error) {
-    //         throw error.response && error.response.data.detail
-    //             ? error.response.data.detail
-    //             : error.message;
-    //     }
-    // }
-
     async getProductList(keyword = '', pageNumber = '') {
         try {
-            const { data } = await axios.get(`/api/products`, {
+            const { data } = await axiosInstance.get(`/api/products`, {
                 params: {
-                    keyword: keyword,  // Assuming 'keyword' should be a query parameter
+                    keyword: keyword, // Assuming 'keyword' should be a query parameter
                     page: pageNumber,
                 }
             });
             return data;
         } catch (error) {
-            // Enhanced error handling
             if (error.response && error.response.data) {
                 // Include response status code and message in the error
                 throw new Error(`Error ${error.response.status}: ${error.response.data.detail || error.message}`);
@@ -37,11 +20,10 @@ class ProductAPI {
         }
     }
 
-
     async getProductDetails(productId) {
         try {
-            const { data } = await axios.get(`/api/products/${productId}`);
-            console.log(data)
+            const { data } = await axiosInstance.get(`/api/products/${productId}`);
+            console.log(data);
             return data;
         } catch (error) {
             throw error.response && error.response.data.detail
@@ -54,7 +36,6 @@ class ProductAPI {
         try {
             const token = JSON.parse(localStorage.getItem("userInfo")).token;
 
-            // Extract CSRF token from cookies
             const csrfToken = document.cookie
                 .split('; ')
                 .find(row => row.startsWith('csrftoken='))
@@ -70,7 +51,7 @@ class ProductAPI {
 
             console.log(config.headers);
 
-            const { data } = await axios.post(
+            const { data } = await axiosInstance.post(
                 `/api/products/${productId}/reviews/`,
                 review,
                 config
@@ -83,10 +64,9 @@ class ProductAPI {
         }
     }
 
-
     async getTopRatedProducts() {
         try {
-            const { data } = await axios.get(`/api/products/top/`);
+            const { data } = await axiosInstance.get(`/api/products/top/`);
             return data;
         } catch (error) {
             throw error.response && error.response.data.detail

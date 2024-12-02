@@ -1,9 +1,6 @@
-import axios from 'axios'
-
+import axiosInstance from '../axiosInstance';
 
 class UserAPI {
-
-
     async getUserDetails(userId) {
         try {
             const token = JSON.parse(localStorage.getItem('userInfo')).token;
@@ -11,10 +8,10 @@ class UserAPI {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
-            }
+            };
 
-            const { data } = await axios.get(`/api/users/${userId}`, config)
-            return data
+            const { data } = await axiosInstance.get(`/api/users/${userId}`, config);
+            return data;
         } catch (error) {
             throw error.response && error.response.data.detail
                 ? error.response.data.detail
@@ -37,7 +34,7 @@ class UserAPI {
                 withCredentials: true, // Ensure cookies are sent
             };
 
-            const { data } = await axios.post(
+            const { data } = await axiosInstance.post(
                 '/api/users/register/',
                 { name, email, password },
                 config
@@ -51,7 +48,6 @@ class UserAPI {
         }
     }
 
-
     async updateUserDetails(userId, updateData) {
         try {
             const token = JSON.parse(localStorage.getItem('userInfo')).token;
@@ -60,9 +56,13 @@ class UserAPI {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
                 }
-            }
-            const { data } = await axios.put(`/api/users/profile/update/`, updateData, config)
-            return data
+            };
+            const { data } = await axiosInstance.put(
+                `/api/users/profile/update/`,
+                updateData,
+                config
+            );
+            return data;
         } catch (error) {
             throw error.response && error.response.data.detail
                 ? error.response.data.detail
@@ -77,8 +77,8 @@ class UserAPI {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
-            }
-            await axios.delete(`/api/users/delete/${userId}`, config)
+            };
+            await axiosInstance.delete(`/api/users/delete/${userId}`, config);
         } catch (error) {
             throw error.response && error.response.data.detail
                 ? error.response.data.detail
@@ -88,19 +88,19 @@ class UserAPI {
 
     async login(email, password) {
         try {
-            const { data } = await axios.post('/api/users/login/', { username: email, password: password })
-            return data
+            const { data } = await axiosInstance.post(
+                '/api/users/login/',
+                { username: email, password: password }
+            );
+            return data;
         } catch (error) {
             throw error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message;
         }
-
     }
-
-
 }
 
-const userAPI = new UserAPI()
+const userAPI = new UserAPI();
 
-export default userAPI
+export default userAPI;
