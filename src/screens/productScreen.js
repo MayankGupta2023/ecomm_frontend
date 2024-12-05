@@ -56,7 +56,7 @@ function ProductScreen() {
                     {/* Product Image and Details */}
                     <Grid item xs={12} sm={6} md={4}>
                         <Card>
-                            <CardMedia component="img" image={product.image} alt={product.name} />
+                            <CardMedia component="img" image={product.image_url} alt={product.name} />
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>

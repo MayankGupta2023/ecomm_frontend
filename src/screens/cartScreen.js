@@ -52,7 +52,7 @@ function CartScreen() {
                                 {/* Image */}
                                 <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
                                     <img
-                                        src={item.image}
+                                        src={item.image_url}
                                         alt={item.name}
                                         style={{ width: "100px", height: "100px", objectFit: "cover" }}
                                     />

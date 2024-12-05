@@ -14,7 +14,7 @@ function Product({ product }) {
                         height: "200px", // Adjust height to ensure image doesn't overflow
                         width: "100%", // Ensure full width scaling
                     }}
-                    image={product.image}
+                    image={product.image_url}
                     alt={product.name}
                 />
                 <CardContent sx={{ textAlign: "center", display: 'flex', flexDirection: 'column', padding: "16px" }}>

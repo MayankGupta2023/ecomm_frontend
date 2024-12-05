@@ -50,7 +50,7 @@ const SearchResultsScreen = () => {
                     <Link to={`/product/${product._id}`}>
                         {/* Image */}
                         <img
-                            src={product.image} // Assuming 'image' holds the URL to the product image
+                            src={product.image_url} // Assuming 'image' holds the URL to the product image
                             alt={product.name}
                             style={{
                                 width: "100px",

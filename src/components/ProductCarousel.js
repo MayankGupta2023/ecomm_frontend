@@ -66,7 +66,7 @@ function ProductCarousel() {
                             {/* Product Image */}
                             <Link to={`/product/${products[currentIndex]._id}`}>
                                 <img
-                                    src={products[currentIndex].image}
+                                    src={products[currentIndex].image_url}
                                     alt={products[currentIndex].name}
                                     style={{
                                         width: "250px", // Set the size of the image

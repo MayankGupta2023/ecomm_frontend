@@ -88,7 +88,7 @@ function PlaceOrderScreen() {
                                             <Grid container spacing={2} alignItems="center">
                                                 <Grid item md={2} xs={3}>
                                                     <img
-                                                        src={item.image}
+                                                        src={item.image_url}
                                                         alt={item.name}
                                                         style={{ width: "100%", height: "auto", objectFit: "cover" }}
                                                     />
