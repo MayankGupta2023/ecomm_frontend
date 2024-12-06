@@ -37,7 +37,7 @@ const SearchResultsScreen = () => {
         <div>
             <h1>Search Results for "{keyword}"</h1>
 
-            {products.map((product) => (
+            {products?.map((product) => (
                 <div
                     key={product._id}
                     style={{
